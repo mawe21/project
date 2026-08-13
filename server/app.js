@@ -54,7 +54,7 @@ const authLimiter = rateLimit({
 // Allowed frontend origins
 const allowedOrigins = [
   "http://localhost:5173",
-  "https://project-asad-a2ef.vercel.app",
+  "https://project-9032jmf1p-asad-a2ef.vercel.app",
 ];
 
 // CORS configuration
