@@ -54,23 +54,14 @@ const authLimiter = rateLimit({
 // Allowed frontend origins
 const allowedOrigins = [
   "http://localhost:5173",
-  "https://project-9032jmf1p-asad-a2ef.vercel.app",
-];
+  process.env.CLIENT_URL,
+].filter(Boolean);
 
 // CORS configuration
 app.use(
   cors({
     origin: (origin, callback) => {
-      const isAllowedVercelDomain =
-        /^https:\/\/project-management-team-collaborat[a-z0-9-]*\.vercel\.app$/.test(
-          origin || ""
-        );
-
-      if (
-        !origin ||
-        allowedOrigins.includes(origin) ||
-        isAllowedVercelDomain
-      ) {
+      if (!origin || allowedOrigins.includes(origin)) {
         callback(null, true);
       } else {
         callback(new Error("Not allowed by CORS"));
