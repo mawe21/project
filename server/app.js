@@ -54,6 +54,7 @@ const authLimiter = rateLimit({
 // Allowed frontend origins
 const allowedOrigins = [
   "http://localhost:5173",
+  "https://project-beta-henna-46.vercel.app",
 ];
 
 // CORS configuration
