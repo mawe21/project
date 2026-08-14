@@ -52,7 +52,7 @@ const Navbar = ({ onOpenMobileNav = () => {} }) => {
     }
   };
 
-  // Initial load and background polling to fix unread badge update bug
+  // Initial load and background polling
   useEffect(() => {
     if (!user) return;
 
@@ -60,7 +60,7 @@ const Navbar = ({ onOpenMobileNav = () => {} }) => {
 
     const intervalId = setInterval(() => {
       loadNotifications(false);
-    }, 30000); // Poll every 30 seconds
+    }, 30000);
 
     return () => clearInterval(intervalId);
   }, [user]);
@@ -147,7 +147,7 @@ const Navbar = ({ onOpenMobileNav = () => {} }) => {
           <button
             type="button"
             onClick={onOpenMobileNav}
-            className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-slate-200 bg-white text-slate-600 shadow-sm md:hidden"
+            className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-slate-200 bg-white text-slate-600 shadow-sm md:hidden cursor-pointer hover:bg-slate-50"
             aria-label="Open navigation menu"
           >
             <FiMenu className="h-4 w-4" />
@@ -166,7 +166,7 @@ const Navbar = ({ onOpenMobileNav = () => {} }) => {
         {/* RIGHT SIDE - Notification, Profile, Logout */}
         <div className="flex shrink-0 items-center overflow-visible" style={{ gap: "12px" }}>
           
-          {/* REDESIGNED NOTIFICATION SECTION */}
+          {/* NOTIFICATION SECTION */}
           <div ref={notificationRef} className="relative shrink-0 overflow-visible">
             {/* Bell Trigger Button */}
             <button
@@ -190,10 +190,10 @@ const Navbar = ({ onOpenMobileNav = () => {} }) => {
               )}
             </button>
 
-            {/* Notification Floating Panel */}
+            {/* Notification Floating Panel - Desktop aur Mobile dono pe perfectly centered */}
             {showNotifications && (
               <div 
-                className="absolute right-0 top-[calc(100%+14px)] z-[9999] w-[340px] sm:w-[380px] max-w-[calc(100vw-24px)] rounded-2xl border border-slate-200/90 bg-white shadow-2xl overflow-hidden flex flex-col animate-fade-in"
+                className="fixed top-20 left-3 right-3 sm:left-1/2 sm:-translate-x-1/2 sm:top-[calc(100%+14px)] sm:right-auto sm:w-[380px] z-[9999] rounded-2xl border border-slate-200/90 bg-white shadow-2xl overflow-hidden flex flex-col animate-fade-in"
                 style={{
                   boxShadow: "0 25px 50px -12px rgba(15, 23, 42, 0.25), 0 0 2px 1px rgba(15, 23, 42, 0.08)",
                 }}
@@ -345,7 +345,7 @@ const Navbar = ({ onOpenMobileNav = () => {} }) => {
           <button
             type="button"
             onClick={logout}
-            className="flex shrink-0 items-center justify-center rounded-xl bg-gradient-to-r from-red-500 to-rose-600 text-xs font-semibold text-white shadow-sm transition-all hover:opacity-95 active:scale-95"
+            className="flex shrink-0 items-center justify-center rounded-xl bg-gradient-to-r from-red-500 to-rose-600 text-xs font-semibold text-white shadow-sm transition-all hover:opacity-95 active:scale-95 cursor-pointer"
             style={{ 
               height: "38px", 
               paddingLeft: "16px", 
